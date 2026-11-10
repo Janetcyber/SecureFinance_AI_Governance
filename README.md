@@ -1,40 +1,50 @@
 # SecureFinance Africa: AI Ethics, Governance and Legal Compliance Assessment
 
-Individual assessment for AICS-201 (AI Ethics, Governance and Legal Frameworks), Assignment 01.
-The organisation, customers and data in this repository are **fictional and synthetic**. No real customer records are used.
+Coursework project for ICDFA AICS-201 (AI Ethics, Governance and Legal Frameworks), Assignment 01. It is a pre-deployment review of a **fictional** fintech platform that does identity verification, fraud detection and financial risk assessment. All data are synthetic. No real customer records are used.
 
-## Contents
+**Read it:**
+- [Final report (PDF)](docs/SecureFinance_AI_Governance_Assessment(1).pdf). If the preview does not load, click the three-dot menu, then Download.
+- Risk register: [CSV](docs/risk_register.csv) or [Excel](docs/risk_register.xlsx)
+
+## What the project covers
+- Six ethical risks, each with cause, affected people, consequence and a proportionate control
+- A 12-risk register (likelihood, impact, owner, controls, residual rating) built on the NIST AI Risk Management Framework
+- Binding law versus non-binding principles: Nigeria Data Protection Act 2023, EU AI Act, UNESCO, OECD
+- A reproducible Python fairness test on synthetic data, with explainability, a mitigation and a 200-seed stability check
+- A deployment recommendation: conditional approval for a limited pilot with human review
+
+## Headline result (synthetic data)
+The model never sees a customer's region, yet it treats regions unequally.
+
+| | Rural flag rate | Urban flag rate | Rural false-positive rate | Urban false-positive rate |
+|---|---|---|---|---|
+| Before mitigation | 24.1% | 5.5% | 19.6% | 2.7% |
+| After peer-group normalisation | 11.6% | 12.2% | 6.8% | 8.4% |
+
+![Flag and false-positive rates by region](outputs/fairness_by_region.png)
+![What drives the model](outputs/feature_importance.png)
+![Stability over 200 random seeds](outputs/stability_gap_hist.png)
+
+## Repository contents
 | Path | What it is |
 |---|---|
-| `docs/SecureFinance_AI_Governance_Assessment.pdf` | Final governance assessment report |
-| `docs/risk_register.csv` | AI risk register (12 risks, with owners, controls, inherent and residual scores) |
-| `data/synthetic_customers.csv` | Synthetic dataset (4,000 fictional customers) |
-| `src/fairness_analysis.py` | Generates the data, trains the model, computes fairness and explainability results, applies mitigation |
-| `src/stability_check.py` | Repeats the whole experiment with 200 random seeds to show the result is not a fluke |
-| `src/build_outputs.py` | Builds the risk register CSV and the PDF report from the results |
+| `docs/` | Final report (PDF) and risk register (CSV and Excel) |
+| `data/` | Synthetic dataset (4,000 fictional customers) |
+| `src/` | Python scripts: data generation, fairness analysis, stability check, report builder |
 | `outputs/` | Metric tables, charts and reason codes produced by the analysis |
+| `Evidence/` | Screenshots of the analysis being run in Google Colab |
 
 ## Reproduce
 ```
-pip install -r requirements.txt   # versions tested with Python 3.12
+pip install -r requirements.txt
 python src/fairness_analysis.py
 python src/stability_check.py
 python src/build_outputs.py
 ```
 The random seed is fixed (42), so results repeat exactly.
 
-## Method in brief
-1. Fraud is generated independently of region and gender (equal base rate).
-2. Behaviour features are generated with documented assumptions (rural customers use more cash and night-time transactions for ordinary reasons).
-3. A logistic regression is trained without region or gender as inputs.
-4. Metrics by group: flag rate, flag-rate ratio, false-positive rate, true-positive rate, precision.
-5. Explainability: permutation importance, proxy correlation with region, per-customer reason codes.
-6. Mitigation: peer-group normalisation (compare each customer with peers in the same region), then re-test.
-7. Stability: repeat everything over 200 seeds and report the spread.
-
 ## Limitations
-Synthetic data with built-in bias; small number of fraud cases in the test set (about 83); two groups only; the four-fifths rule is a heuristic, not a Nigerian legal standard.
-
+The data are synthetic and the bias was built in by design, so the size of the effect says nothing about any real system. The test set holds about 83 fraud cases, so some rates are noisy. Only two groups were tested, and the four-fifths rule is a heuristic, not a Nigerian legal standard.
 
 ## Note on the final report
-The final PDF was edited manually in Google Docs; all figures come from the scripts in src/.
+The final PDF was edited manually in Google Docs; all figures come from the scripts in `src/`.
