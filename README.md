@@ -3,7 +3,7 @@
 Coursework project for ICDFA AICS-201 (AI Ethics, Governance and Legal Frameworks), Assignment 01. It is a pre-deployment review of a **fictional** fintech platform that does identity verification, fraud detection and financial risk assessment. All data are synthetic. No real customer records are used.
 
 **Read it:**
-- [Final report (PDF)](docs/SecureFinance_AI_Governance_Assessment(1).pdf). If the preview does not load, click the three-dot menu, then Download.
+- [Final report (PDF)](docs/SecureFinance_AI_Governance_Assessment%20%281%29.pdf). If the preview does not load, click the three-dot menu, then Download.
 - Risk register: [CSV](docs/risk_register.csv) or [Excel](docs/risk_register.xlsx)
 
 ## What the project covers
