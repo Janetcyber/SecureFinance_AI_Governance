@@ -1,0 +1,5 @@
+,value
+runs,200.0
+share_before_flag_ratio_below_0.80,1.0
+share_after_flag_ratio_at_least_0.80,0.905
+share_after_fpr_ratio_at_most_1.25,0.81

@@ -1,0 +1,5 @@
+stage,attribute,parity_difference,impact_ratio_low_over_high,fpr_gap,fpr_ratio_high_over_low,tpr_gap,most_flagged_group,least_flagged_group
+before,region,0.186,0.228,0.169,7.173,0.423,Rural,Urban
+before,gender,0.011,0.91,0.002,1.029,0.063,Female,Male
+after,region,0.006,0.948,0.016,1.238,0.089,Urban,Rural
+after,gender,0.016,0.873,0.003,1.035,0.141,Female,Male

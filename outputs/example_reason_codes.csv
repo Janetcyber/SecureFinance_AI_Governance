@@ -1,0 +1,4 @@
+customer_id,region,score,reason_1,reason_2
+SFA-00611,Rural,0.749,night_txn_ratio (+2.53),txns_per_month (+0.38)
+SFA-03427,Rural,0.75,txns_per_month (+0.99),night_txn_ratio (+0.88)
+SFA-01056,Rural,0.792,night_txn_ratio (+1.78),txns_per_month (+0.73)
